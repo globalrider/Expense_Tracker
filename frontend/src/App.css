@@ -1,0 +1,110 @@
+/* ==============================================================================
+   RESPONSIVE MEDIA QUERIES & MODERN DESIGN ADAPTATIONS
+   ============================================================================== */
+
+/* 1. Fluid Typography & Dynamic Viewport Heights */
+:root {
+  --fluid-h1: clamp(1.35rem, 1.1rem + 1.25vw, 2.25rem);
+  --fluid-h2: clamp(1.15rem, 0.95rem + 1vw, 1.75rem);
+  --fluid-stat: clamp(1.25rem, 1rem + 1.2vw, 1.85rem);
+  --app-height: 100dvh;
+}
+
+/* 2. Mobile Viewport Media Query (< 640px) */
+@media (max-width: 639.98px) {
+  /* Minimum comfortable touch targets for mobile accessibility (WCAG) */
+  button,
+  [role="button"],
+  select {
+    min-height: 38px;
+  }
+
+  /* Responsive smooth scroll container for data tables */
+  .responsive-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    position: relative;
+  }
+
+  /* Mobile bottom padding to prevent content overlap with bottom navigation bar */
+  .mobile-bottom-space {
+    padding-bottom: 5.5rem;
+  }
+}
+
+/* 3. Tablet Viewport Media Query (640px to 1023px) */
+@media (min-width: 640px) and (max-width: 1023.98px) {
+  .tablet-grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* 4. Desktop Viewport Media Query (>= 1024px) */
+@media (min-width: 1024px) {
+  .desktop-sticky-sidebar {
+    position: sticky;
+    top: 4.25rem;
+    height: calc(100dvh - 4.25rem);
+  }
+}
+
+/* 5. Safe Area Insets for Modern Mobile Browsers / Notches */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  .safe-top {
+    padding-top: max(0.5rem, env(safe-area-inset-top));
+  }
+}
+
+/* 6. Accessibility: Reduced Motion Media Query */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 7. Accessibility: High Contrast Preference Media Query */
+@media (prefers-contrast: more) {
+  button,
+  .border,
+  input,
+  select {
+    border-width: 2px !important;
+  }
+}
+
+/* 8. Print Media Query (Statements & Reports) */
+@media print {
+  header,
+  aside,
+  nav,
+  .no-print,
+  button:not(.print-allow) {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  main {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .border,
+  .rounded-2xl,
+  .rounded-3xl {
+    box-shadow: none !important;
+    border-color: #cbd5e1 !important;
+  }
+}

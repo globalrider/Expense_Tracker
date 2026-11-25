@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RootController {
 
-    @GetMapping(value = "/", produces = MediaType.TEXT_HTML_VALUE)
+    @GetMapping(value = "/api-status", produces = MediaType.TEXT_HTML_VALUE)
     public String welcome() {
         return """
             <!DOCTYPE html>
